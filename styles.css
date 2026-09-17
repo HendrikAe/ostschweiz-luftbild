@@ -175,7 +175,12 @@ h2 { font-size: clamp(1.85rem, 3.4vw, 2.55rem); margin: 0 0 1rem; }
 .hero__media img {
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: 72% center; /* keep luxury apartments / lake on the right as in mockup */
+  object-position: 78% 55%; /* desktop: apartments + lake on the right */
+}
+@media (max-width: 767px) {
+  .hero__media img {
+    object-position: center 42%; /* mobile portrait: keep building + lake stacked */
+  }
 }
 .hero__media::after {
   content: "";
