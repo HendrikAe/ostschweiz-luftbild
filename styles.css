@@ -335,19 +335,20 @@ h2 { font-size: clamp(1.85rem, 3.4vw, 2.55rem); margin: 0 0 1rem; }
 /* Heimat band + closing sheet (mockup bottom) */
 .heimat {
   position: relative;
-  min-height: 520px;
+  min-height: min(62vh, 560px);
   display: flex;
   align-items: center;
   color: #fff;
-  overflow: visible;
+  overflow: hidden;
   z-index: 0;
   border: 0;
+  width: 100%;
 }
 .heimat__media { position: absolute; inset: 0; border-radius: 0; overflow: hidden; }
 .heimat__media img {
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: 55% center;
+  object-position: 62% 45%;
 }
 .heimat__media::after {
   content: "";
@@ -359,25 +360,25 @@ h2 { font-size: clamp(1.85rem, 3.4vw, 2.55rem); margin: 0 0 1rem; }
 .heimat h2 { max-width: 14ch; color: #fff; }
 .heimat .lead { color: rgba(255,255,255,.92); margin-bottom: 1.5rem; }
 
-/* White sheet overlapping heimat — soft card, NO side borders/strokes */
+/* White CTA+footer overlapping heimat — FULL BLEED, no side Ränder / rounded gaps */
 .closing-sheet {
   position: relative;
   z-index: 2;
-  margin: -4.5rem 0 0;
+  margin: -3.5rem 0 0;
   background: #fff;
   border: 0;
   outline: 0;
   box-shadow: none;
-  /* Large rounded top + bottom — continuous white sheet, no vertical umrandung */
-  border-radius: 48px 48px 48px 48px;
+  border-radius: 0;
   padding-top: .5rem;
   padding-bottom: 0;
   overflow: hidden;
+  width: 100%;
+  max-width: none;
 }
 @media (min-width: 900px) {
   .closing-sheet {
-    border-radius: 72px;
-    margin-top: -5.5rem;
+    margin-top: -4.5rem;
   }
 }
 /* Kill any leftover borders on footer inside the sheet */
@@ -916,18 +917,28 @@ h2 { font-size: clamp(1.85rem, 3.4vw, 2.55rem); margin: 0 0 1rem; }
   .article-aside { position: static; }
 }
 
-/* page bg for rounded closing sheet corners */
+/* Full-bleed page; heimat sits edge-to-edge under CTA */
 body {
-  background: #f3f3f1;
+  background: #fff;
 }
 main {
   background: #fff;
 }
 .heimat {
   background: #111;
+  width: 100%;
 }
 .closing-sheet {
   margin-left: 0;
   margin-right: 0;
   width: 100%;
+  border-radius: 0 !important;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0);
+  white-space: nowrap; border: 0;
 }
