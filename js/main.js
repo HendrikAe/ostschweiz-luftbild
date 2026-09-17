@@ -41,3 +41,34 @@
   track.addEventListener("scroll", () => window.requestAnimationFrame(updateButtons), { passive: true });
   updateButtons();
 })();
+
+
+/* Center Kontakt form in the viewport when arriving via #anfrage */
+(function centerAnfrageForm() {
+  const form = document.getElementById("anfrage");
+  if (!form) return;
+
+  const center = () => {
+    const rect = form.getBoundingClientRect();
+    const absoluteTop = window.scrollY + rect.top;
+    const target = absoluteTop - (window.innerHeight - rect.height) / 2;
+    window.scrollTo({ top: Math.max(0, target), behavior: "auto" });
+    const first = form.querySelector("input, textarea");
+    if (first && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      try { first.focus({ preventScroll: true }); } catch (_) { first.focus(); }
+    }
+  };
+
+  const go = () => {
+    if (location.hash === "#anfrage" || document.body.classList.contains("kontakt-page")) {
+      // Always center on kontakt page so CTA landings see fields without scrolling
+      requestAnimationFrame(() => requestAnimationFrame(center));
+    }
+  };
+
+  if (document.readyState === "complete") go();
+  else window.addEventListener("load", go);
+  window.addEventListener("hashchange", () => {
+    if (location.hash === "#anfrage") requestAnimationFrame(() => requestAnimationFrame(center));
+  });
+})();
