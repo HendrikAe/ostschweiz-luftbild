@@ -55,3 +55,18 @@ Remove conflicting forwarding / old A / ALIAS on `@` and `www`. Verify with `dig
 - Soft trust only: **BAZL-konform** · **Voll versichert** · **Ostschweiz**
 - Banned: «100+ Projekte», «BAZL-lizenziert»
 - Free-First → CHF 190 only on conversion / soft footer — not in hero
+
+## Security headers (static hosting limits)
+
+GitHub Pages (and most pure static hosts) **cannot set custom HTTP security headers** from this repo alone. Prefer adding them at the CDN / DNS edge if available:
+
+| Header | Suggested value |
+|--------|-----------------|
+| `Content-Security-Policy` | Restrict to self + Google Fonts (`fonts.googleapis.com`, `fonts.gstatic.com`); allow `mailto:` form UX |
+| `X-Content-Type-Options` | `nosniff` |
+| `Referrer-Policy` | `strict-origin-when-cross-origin` |
+| `Permissions-Policy` | Disable unused sensors (`camera=()`, `microphone=()`, `geolocation=()`) |
+| `X-Frame-Options` | `SAMEORIGIN` (or CSP `frame-ancestors`) |
+
+Options: Cloudflare Transform Rules / Pages `_headers`, Netlify `_headers`, or another reverse proxy. Until then, HTTPS is enforced via GitHub Pages **Enforce HTTPS** after custom-domain DNS is green.
+

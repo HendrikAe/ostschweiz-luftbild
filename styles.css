@@ -41,6 +41,28 @@ button { font: inherit; cursor: pointer; border: 0; background: none; }
   outline-offset: 3px;
 }
 
+/* Skip link (a11y) */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 10000;
+  padding: .65rem 1rem;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: .9rem;
+  transition: top .15s ease;
+}
+.skip-link:focus,
+.skip-link:focus-visible {
+  top: 1rem;
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  opacity: 1;
+}
+
 /* Typography */
 .eyebrow {
   font-size: .72rem;
