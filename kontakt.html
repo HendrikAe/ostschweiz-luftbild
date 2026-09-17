@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Unverbindlich anfragen | Ostschweiz Luftbild</title>
-  <meta name="description" content="Anfrage für Drohnenaufnahmen in St. Gallen und der Ostschweiz. Erstes Objekt gratis für neue Makler, danach CHF 190 Aerial-Set. BAZL-konform und versichert.">
+  <meta name="description" content="Anfrage für Drohnenaufnahmen in St. Gallen und der Ostschweiz. Unverbindlich — BAZL-konform und versichert.">
   <link rel="canonical" href="https://ostschweizluftbild.ch/kontakt.html">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="author" content="Ostschweiz Luftbild · Hendrik Aeppli">
@@ -13,7 +13,7 @@
   <meta property="og:site_name" content="Ostschweiz Luftbild">
   <meta property="og:url" content="https://ostschweizluftbild.ch/kontakt.html">
   <meta property="og:title" content="Unverbindlich anfragen | Ostschweiz Luftbild">
-  <meta property="og:description" content="Schreiben Sie uns — Drohnenfotos für Makler und Baudokumentation in der Ostschweiz. Erstes Objekt gratis für neue Makler.">
+  <meta property="og:description" content="Schreiben Sie uns — Drohnenfotos für Makler und Baudokumentation in der Ostschweiz.">
   <meta property="og:image" content="https://ostschweizluftbild.ch/assets/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -85,16 +85,12 @@
 
     <section class="section section--soft" id="formular" aria-labelledby="form-title">
       <div class="container">
-        <div class="offer" id="angebot">
-          <p><strong>Erstes Objekt gratis für Makler:</strong> 4–6 HDR, St. Gallen/Agglo — danach <strong>CHF 190</strong> für ein volles Aerial-Set. Nur Drohnenaufnahmen — keine Bodenfotos oder Interieurs.</p>
-        </div>
-
-        <div class="kontakt-grid" style="margin-top:2rem">
-          <form id="anfrage" action="mailto:hendrik@ostschweizluftbild.ch" method="get" enctype="text/plain">
+        <div class="kontakt-grid">
+          <form id="anfrage" data-sheet-endpoint="SHEET_WEBAPP_URL" novalidate>
             <h2 id="form-title" class="visually-hidden">Anfrageformular</h2>
             <div class="field">
               <label for="name">Name / Büro</label>
-              <input id="name" name="subject" type="text" autocomplete="organization" required placeholder="z. B. Muster Immobilien AG">
+              <input id="name" name="name" type="text" autocomplete="organization" required placeholder="z. B. Muster Immobilien AG">
             </div>
             <div class="field">
               <label for="email">E-Mail</label>
@@ -106,17 +102,16 @@
             </div>
             <div class="field">
               <label for="msg">Objekt / Lage / Wunschtermin</label>
-              <textarea id="msg" name="body" rows="5" required placeholder="Kurz beschreiben — z. B. Exposé St. Gallen, KW 38"></textarea>
+              <textarea id="msg" name="message" rows="5" required placeholder="Kurz beschreiben — z. B. Exposé St. Gallen, KW 38"></textarea>
             </div>
-            <p class="form-note">Öffnet Ihr E-Mail-Programm an hendrik@ostschweizluftbild.ch. Kein Backend.</p>
-            <button class="btn btn--dark" type="submit">Nachricht senden →</button>
+            <p class="form-note" id="form-status">Ihre Anfrage landet in unserem Posteingang und im Anfragen-Sheet.</p>
+            <button class="btn btn--dark" type="submit">Anfrage senden →</button>
           </form>
           <aside class="contact-card">
             <h3>Direkt erreichen</h3>
             <p><a href="mailto:hendrik@ostschweizluftbild.ch">hendrik@ostschweizluftbild.ch</a></p>
             <p><a class="phone-link" href="tel:+41783377777">078 337 77 77</a></p>
             <p class="muted" style="margin-top:1rem">Ostschweiz Luftbild<br>Hendrik Aeppli<br>St. Gallen / Ostschweiz</p>
-            <p style="margin-top:1.25rem"><strong>Erstes Objekt gratis:</strong> für neue Makler, danach CHF 190 / Aerial-Set.</p>
             <p class="muted" style="margin-top:.75rem;font-size:.9rem">Drohnenaufnahmen only — keine Bodenfotos oder Interieurs.</p>
             <p style="margin-top:1.5rem"><a class="btn btn--dark" href="mailto:hendrik@ostschweizluftbild.ch?subject=Anfrage%20Ostschweiz%20Luftbild">Direkt per E-Mail →</a></p>
           </aside>

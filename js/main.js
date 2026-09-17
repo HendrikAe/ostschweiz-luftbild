@@ -72,3 +72,48 @@
     if (location.hash === "#anfrage") requestAnimationFrame(() => requestAnimationFrame(center));
   });
 })();
+
+
+/* Submit Kontakt form → Google Sheet (Apps Script web app) */
+(function sheetFormSubmit() {
+  const form = document.getElementById("anfrage");
+  if (!form) return;
+  const status = document.getElementById("form-status");
+  const endpoint = form.getAttribute("data-sheet-endpoint");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!endpoint || endpoint === "SHEET_WEBAPP_URL") {
+      if (status) status.textContent = "Formular noch nicht verbunden — bitte per E-Mail an hendrik@ostschweizluftbild.ch schreiben.";
+      return;
+    }
+    const btn = form.querySelector('button[type="submit"]');
+    const data = {
+      name: form.name.value.trim(),
+      email: form.email.value.trim(),
+      phone: form.phone.value.trim(),
+      message: form.message.value.trim(),
+      page: location.href
+    };
+    if (!data.name || !data.email || !data.message) {
+      if (status) status.textContent = "Bitte Name, E-Mail und Nachricht ausfüllen.";
+      return;
+    }
+    if (btn) { btn.disabled = true; btn.textContent = "Senden…"; }
+    if (status) status.textContent = "Wird gesendet…";
+    try {
+      await fetch(endpoint, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(data).toString()
+      });
+      form.reset();
+      if (status) status.textContent = "Danke — Ihre Anfrage ist angekommen. Wir melden uns zeitnah.";
+      if (btn) { btn.disabled = false; btn.textContent = "Anfrage senden →"; }
+    } catch (err) {
+      if (status) status.textContent = "Senden fehlgeschlagen. Bitte schreiben Sie an hendrik@ostschweizluftbild.ch oder rufen Sie 078 337 77 77 an.";
+      if (btn) { btn.disabled = false; btn.textContent = "Anfrage senden →"; }
+    }
+  });
+})();
